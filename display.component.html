@@ -1,0 +1,95 @@
+<nav class ="navbar navbar-light by-primary">
+    <div class="container-fluid">
+        <h1 style="color: blueviolet;">Task Management Web Application</h1>
+        <div class="d-flex">
+            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Add Task</button>
+        </div>
+    </div>
+</nav>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th scope="col">UserName</th>
+            <th scope="col">TaskID</th>
+            <th scope="col">TaskTitle</th>
+            <th scope="col">DescriptionOfTask</th>
+            <th scope="col">StatusOfTask</th>
+            <th scope="col">Deadline</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+        <tbody> 
+            <tr *ngFor="let row of DisplayData">
+                <td>{{row.UserName}}</td>
+                <td>{{row.TaskID}}</td>
+                <td>{{row.TaskTitle}}</td>
+                <td>{{row.DescriptionOfTask}}</td>
+                <td>{{row.StatusOfTask}}</td>
+                <td>{{row.Deadline}}</td>
+
+                <td>
+                    <button (click)="onEdit" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info">Update</button>
+                    <button (click)="deleteAllTask(row)" class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    
+</table>
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="formValue">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">User Name</label>
+                  <input type="text" formControlName="UserName" class="form-control" id="exampleInputEmail1">
+                  
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">TaskID</label>
+                  <input type="number" formControlName="TaskID" class="form-control" id="exampleInputPassword1">
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">TaskTitle</label>
+                    <input type="text" formControlName="TaskTitle" class="form-control" id="exampleInputPassword1">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">DescriptionOfTask</label>
+                    <input type="text" formControlName="DescriptionOfTask" class="form-control" id="exampleInputPassword1">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">StatusOfTask</label>
+                    <input type="text" formControlName="StatusOfTask" class="form-control" id="exampleInputPassword1">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Deadline</label>
+                    <input type="text" formControlName="Deadline" class="form-control" id="exampleInputPassword1">
+                  </div>
+                
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>...
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cancle" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" (click)="postDisplayDetails()" class="btn btn-primary">Add</button>
+          <button type="button" (click)="updateDisplayDetails()" class="btn btn-primary">Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
